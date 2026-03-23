@@ -6,6 +6,8 @@ A super simple FastAPI application that allows students to view and sign up for 
 
 - View all available extracurricular activities
 - Sign up for activities
+- Unregister from activities
+- Persist activities, users, and signups to a JSON database file
 
 ## Getting Started
 
@@ -47,4 +49,12 @@ The application uses a simple data model with meaningful identifiers:
    - Name
    - Grade level
 
-All data is stored in memory, which means data will be reset when the server restarts.
+## Storage
+
+The app now uses file-backed storage in `src/data`:
+
+- `seed_db.json`: Seed data checked into the repository
+- `db.json`: Runtime database file created automatically on first run
+
+On first startup, `db.json` is created from `seed_db.json`.
+Changes made through signup/unregister endpoints are persisted to `db.json` and survive server restarts.
